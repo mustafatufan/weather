@@ -1,12 +1,11 @@
 package com.oneot.weather.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +27,14 @@ public class ForecastRepositoryTest {
 	public void saveSingleForecastTest() {
 		List<Forecast> forecastList = generateForecastList(1);
 		List<Forecast> addedList = forecastRepository.saveAll(forecastList);
-		assertEquals(forecastList, addedList);
+		Assert.assertEquals(forecastList, addedList);
 	}
 
 	@Test
 	public void save100ForecastTest() {
 		List<Forecast> forecastList = generateForecastList(100);
 		List<Forecast> addedList = forecastRepository.saveAll(forecastList);
-		assertEquals(forecastList, addedList);
+		Assert.assertEquals(forecastList, addedList);
 	}
 
 	private List<Forecast> generateForecastList(int size) {
