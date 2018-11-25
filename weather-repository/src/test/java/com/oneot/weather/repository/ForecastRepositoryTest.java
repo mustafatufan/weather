@@ -1,5 +1,7 @@
 package com.oneot.weather.repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,8 +73,16 @@ public class ForecastRepositoryTest {
 	}
 
 	private Date generateForecastDate() {
+		Date date = null;
 		Faker faker = new Faker();
-		return faker.date().future(1000, TimeUnit.DAYS);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateWithTime = faker.date().future(3, TimeUnit.DAYS);
+		try {
+			date = sdf.parse(sdf.format(dateWithTime));
+		} catch (ParseException e) {
+			// TODO: log
+		}
+		return date;
 	}
 
 	private String generateName() {

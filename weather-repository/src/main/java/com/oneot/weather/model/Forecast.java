@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "forecast")
-public class Forecast {
+public class Forecast implements IForecast {
 
 	@Id
 	@GeneratedValue(generator = "forecast_generator")
@@ -44,6 +44,7 @@ public class Forecast {
 	@Column(name = "create_at")
 	private Date createAt;
 
+	@Override
 	public Date getForecastDate() {
 		return forecastDate;
 	}
@@ -52,6 +53,7 @@ public class Forecast {
 		this.forecastDate = forecastDate;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -60,6 +62,7 @@ public class Forecast {
 		this.name = name;
 	}
 
+	@Override
 	public TimeOfDay getTimeOfDay() {
 		return timeOfDay;
 	}
@@ -68,6 +71,7 @@ public class Forecast {
 		this.timeOfDay = timeOfDay;
 	}
 
+	@Override
 	public String getPhenomenon() {
 		return phenomenon;
 	}
@@ -76,6 +80,7 @@ public class Forecast {
 		this.phenomenon = phenomenon;
 	}
 
+	@Override
 	public Integer getTemp() {
 		return temp;
 	}
@@ -83,5 +88,4 @@ public class Forecast {
 	public void setTemp(Integer temp) {
 		this.temp = temp;
 	}
-
 }
