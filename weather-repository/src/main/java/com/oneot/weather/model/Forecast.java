@@ -21,7 +21,7 @@ public class Forecast implements IForecast {
 	@Id
 	@GeneratedValue(generator = "forecast_generator")
 	@SequenceGenerator(name = "forecast_generator", sequenceName = "forecast_sequence", initialValue = 1000)
-	private Long forecast_id;
+	private Long forecastId;
 
 	@DateTimeFormat
 	@Column(name = "forecast_date", nullable = false)
