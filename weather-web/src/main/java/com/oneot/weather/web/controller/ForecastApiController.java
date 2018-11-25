@@ -21,7 +21,7 @@ public class ForecastApiController {
 
 	@RequestMapping(value = "/forecast", method = RequestMethod.GET, produces = { "application/json" })
 	public @ResponseBody List<IForecast> getForecast() {
-		List<IForecast> list = new ArrayList<IForecast>();
+		List<IForecast> list = new ArrayList<>();
 		list = forecastService.getForecastListOfLastDay();
 		return list;
 	}

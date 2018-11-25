@@ -8,10 +8,12 @@ public interface IForecast {
 
 	public String getName();
 
-	public TimeOfDay getTimeOfDay();
+	public String getNightPhenomenon();
 
-	public String getPhenomenon();
+	public Integer getNightTemp();
 
-	public Integer getTemp();
+	public String getDayPhenomenon();
+
+	public Integer getDayTemp();
 
 }

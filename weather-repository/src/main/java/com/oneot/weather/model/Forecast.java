@@ -30,14 +30,17 @@ public class Forecast implements IForecast {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(name = "time_of_day", nullable = false)
-	private TimeOfDay timeOfDay;
+	@Column(name = "night_phenomenon", nullable = false)
+	private String nightPhenomenon;
 
-	@Column(name = "phenomenon", nullable = false)
-	private String phenomenon;
+	@Column(name = "night_temp", nullable = false)
+	private Integer nightTemp;
 
-	@Column(name = "temp", nullable = false)
-	private Integer temp;
+	@Column(name = "day_phenomenon", nullable = false)
+	private String dayPhenomenon;
+
+	@Column(name = "day_temp", nullable = false)
+	private Integer dayTemp;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -63,29 +66,38 @@ public class Forecast implements IForecast {
 	}
 
 	@Override
-	public TimeOfDay getTimeOfDay() {
-		return timeOfDay;
+	public String getNightPhenomenon() {
+		return nightPhenomenon;
 	}
 
-	public void setTimeOfDay(TimeOfDay timeOfDay) {
-		this.timeOfDay = timeOfDay;
-	}
-
-	@Override
-	public String getPhenomenon() {
-		return phenomenon;
-	}
-
-	public void setPhenomenon(String phenomenon) {
-		this.phenomenon = phenomenon;
+	public void setNightPhenomenon(String nightPhenomenon) {
+		this.nightPhenomenon = nightPhenomenon;
 	}
 
 	@Override
-	public Integer getTemp() {
-		return temp;
+	public Integer getNightTemp() {
+		return nightTemp;
 	}
 
-	public void setTemp(Integer temp) {
-		this.temp = temp;
+	public void setNightTemp(Integer nightTemp) {
+		this.nightTemp = nightTemp;
+	}
+
+	@Override
+	public String getDayPhenomenon() {
+		return dayPhenomenon;
+	}
+
+	public void setDayPhenomenon(String dayPhenomenon) {
+		this.dayPhenomenon = dayPhenomenon;
+	}
+
+	@Override
+	public Integer getDayTemp() {
+		return dayTemp;
+	}
+
+	public void setDayTemp(Integer dayTemp) {
+		this.dayTemp = dayTemp;
 	}
 }

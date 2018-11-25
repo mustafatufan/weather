@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.github.javafaker.Faker;
 import com.oneot.weather.TestApplication;
 import com.oneot.weather.model.Forecast;
-import com.oneot.weather.model.TimeOfDay;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
@@ -42,34 +41,20 @@ public class ForecastRepositoryTest {
 	private List<Forecast> generateForecastList(int size) {
 		List<Forecast> forecastList = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
-			forecastList.addAll(generateForecastPair());
+			forecastList.add(generateForecast());
 		}
 		return forecastList;
 	}
 
-	private List<Forecast> generateForecastPair() {
-		List<Forecast> pair = new ArrayList<>();
-
-		Date forecastDate = generateForecastDate();
-		String name = generateName();
-
-		Forecast day = new Forecast();
-		day.setForecastDate(forecastDate);
-		day.setName(name);
-		day.setPhenomenon(generatePhenomenon());
-		day.setTemp(generateTemp());
-		day.setTimeOfDay(TimeOfDay.DAY);
-		pair.add(day);
-
-		Forecast night = new Forecast();
-		night.setForecastDate(forecastDate);
-		night.setName(name);
-		night.setPhenomenon(generatePhenomenon());
-		night.setTemp(generateTemp());
-		night.setTimeOfDay(TimeOfDay.NIGHT);
-		pair.add(night);
-
-		return pair;
+	private Forecast generateForecast() {
+		Forecast forecast = new Forecast();
+		forecast.setForecastDate(generateForecastDate());
+		forecast.setName(generateName());
+		forecast.setNightPhenomenon(generatePhenomenon());
+		forecast.setNightTemp(generateTemp(-40, 10));
+		forecast.setDayPhenomenon(generatePhenomenon());
+		forecast.setDayTemp(generateTemp(-10, 40));
+		return forecast;
 	}
 
 	private Date generateForecastDate() {
@@ -95,9 +80,9 @@ public class ForecastRepositoryTest {
 		return faker.weather().description();
 	}
 
-	private Integer generateTemp() {
+	private Integer generateTemp(Integer min, Integer max) {
 		Faker faker = new Faker();
-		return faker.number().numberBetween(-50, 50);
+		return faker.number().numberBetween(min, max);
 	}
 
 	@Autowired
